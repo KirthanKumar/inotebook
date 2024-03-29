@@ -54,3 +54,25 @@ now if we try the same thing it prints
 in console.
 
 Therefore by adding this code app.use(express.json()) to index.js we can deal with json(like sending request with body as json). 
+
+-------------------------------
+
+const user = User(req.body);
+user.save();
+
+Now if we send request with json body (req.body) as 
+{
+  "name":"kirthan",
+  "email":"kirthan@g.com",
+  "password":"874tfgyb"
+}
+to http://localhost:3000/api/auth
+
+this will be saved in our database inside our default collection 'test'
+
+_id: ObjectId('66070a49de080a032d59289a')
+name: "kirthan"
+email: "kirthan@g.com"
+password: "874tfgyb"
+date: 2024-03-29T18:36:57.896+00:00
+__v: 0
