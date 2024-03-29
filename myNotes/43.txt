@@ -34,3 +34,23 @@ We need more endpoints to write to database, to authenticate user, to check if u
 This command will unstage all changes that have been previously staged, leaving your working directory unchanged. 
 
 schemas(models) -> https://mongoosejs.com/docs/guide.html
+
+--------------------------------------------------------------------
+
+#45 - Storing Data into the Database Using Mongoose Model:
+
+In tunder-client we create a new GET request to http://localhost:3000/api/auth and we get the response specified by us. 
+In that request we choose Headers and add key-value "Content-Type" "application/json", and go to body-> json and put this 
+{
+  "name":"kirthan"
+}
+and try to print req.body in console it prints "undefined"
+
+If we want to use req.body then we have to use a middleware : app.use(express.json())
+now if we try the same thing it prints 
+{
+  "name":"kirthan"
+}
+in console.
+
+Therefore by adding this code app.use(express.json()) to index.js we can deal with json(like sending request with body as json). 
