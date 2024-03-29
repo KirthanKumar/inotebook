@@ -27,3 +27,10 @@ Now if we sent a GET request to http://localhost:3000 using tunder-client we get
 We need more endpoints to write to database, to authenticate user, to check if user is connect and fetch him/her data, to also fetch notes and display in react UI.
 
 --------------------------------------------------------------------
+
+#44 - Creating Routes & Schema for Storing Notes and Users:
+
+> git reset
+This command will unstage all changes that have been previously staged, leaving your working directory unchanged. 
+
+schemas(models) -> https://mongoosejs.com/docs/guide.html
