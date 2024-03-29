@@ -42,3 +42,5 @@ see 'validation + saving data to perticular database' request in tunder-client
 
 --------------------------------------------------------------------
 
+#47 - Creating ThunderClient Collections to Manage Requests + Some changes:
+we can also export the collections in ThunderClient and import in some other PC.
