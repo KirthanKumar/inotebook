@@ -44,3 +44,12 @@ see 'validation + saving data to perticular database' request in tunder-client
 
 #47 - Creating ThunderClient Collections to Manage Requests + Some changes:
 we can also export the collections in ThunderClient and import in some other PC.
+
+--------------------------------------------------------------------
+
+#48 - Understanding password Hashing, Salt & Pepper: 
+hash is a one way function. suppose say a client requests backend for login. Client enters password, backend hashes the password and compares it with the hashed password corresponding to the account to which client is trying to login. If they match then login is successful. 
+
+If a client is using a common password and a hacker owns a rainbow table(contains hash value of some common passwords). And if hacker hacks into the database he/she can find the corresponding password for hash value in database and hack into account. To overcome this limitation we use salt.
+
+backend adds salt to password and hashes it and stores it in database. 
