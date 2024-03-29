@@ -76,3 +76,10 @@ email: "kirthan@g.com"
 password: "874tfgyb"
 date: 2024-03-29T18:36:57.896+00:00
 __v: 0
+
+-------------------------------
+
+when we not follow the defined schema (like {"name":"", "email" : "98578568"} ) our application throws error. 
+So we will define a system to check if work is going right or wrong. So we will use validation. 
+
+It should be a POST request to http://localhost:3000/api/auth not GET. If it is GET request, as the data we are sending is sensitive like password, it can be seen in logs files of the computer.
