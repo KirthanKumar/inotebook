@@ -1,0 +1,54 @@
+#41 - Introduction To MERN stack:
+What is MERN stack?
+MERN stands for MongoDB, Express, React, Node, after the four key technologies that make up the stack.
+* MongoDB - document database
+* Express(.js) - Node.js web framework
+* React(.js) - A Client-side javascript framework
+* Node(.js) - The premier javascript web server
+
+For frontend we use React and for backend we use API. With the help of Express(.js) https://expressjs.com/ we write our backend API. We will maintain frontend and backend separately. 
+For this we downloaded mondo db and while installing it we choose it to run as a service. That means that it will be running always. 
+When i previously downloaded it i choose not to run it as a service instead to run it manually whenever required. 
+
+--------------------------------------------------------------------
+
+#42 - Project 3: iNotebook backend and React frontend setup:
+In news-monkey app we used external backend API. Now we will use MERN stack and create our own API, and will not be dependent on any external API.
+
+We will develop iNotebook. iNotebook is a notebook on the cloud. Using this we will be able to create different notes and save it. We will also authenticate the users so that they will not be able to see each others notes. 
+For this we should create our own API using express server. Our API portion will be seperate and our frontend(React) portion will be seperate. 
+Now we are developing frontend by doing 'npx create-react-app inotebook'. Afterwards we will develop a API, this will be a node.js project. 
+And the node-modules of this API(backend) and React(frontend) will be different.
+This is because our react app is static application, this will get downloaded from the server and served in clients browser. 
+But after the react app is served to the server our API will be hit again and again more number of times by the clients, like we did for different category news in news-monkey app. 
+So we would place API portion in strong server react portion in relatively weak server.
+
+create a backend folder and initialize a npm project.:
+npm init
+
+install required packages:
+npm i express
+npm i mongoose
+
+Will use tunder-Client or postman to test API.
+
+--------------------------------------------------------------------
+
+// Git Tutorial: How to Upload your Projects to Git & GitHub | Web Development Tutorials #100
+// https://www.codewithharry.com/videos/web-development-in-hindi-99/
+
+// git config --global user.name "KirthanKumar"
+// git config --global user.email "skirthankumar13579@gmail.com"
+// touch .gitignore
+// git init
+// git add .
+// git commit -m "Initial Commit"
+// git status
+// git remote add origin git@github.com:KirthanKumar/DanceWebsite.git (git remote add origin <ssh url.git>)
+// git push -u origin master (will get error)
+// ssh-keygen -t rsa -b 4096 -C "skirthankumar13579@gmail.com"
+// cat /c/Users/iitia/.ssh/id_rsa.pub (cat /path/to/id_rsa.pub/)
+
+// paste this key in https://github.com/settings/ssh/new giving it a title and add SSH key
+
+// git push -u origin master (now no error)
