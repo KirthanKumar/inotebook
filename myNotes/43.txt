@@ -1,0 +1,29 @@
+#43 - iNotebook db & Express Server Setup:
+https://mongoosejs.com/
+
+when we open mongodb compass app, it shows a interface to enter URL. This is a URL to connect to colud mongodb that is mongodb atlas from our local database. This will be done when we are finished with development and into deployment. That is we will make our remote database a online cloud database in mongodb atlas. 
+As i told earlier i did not choose 'run it as a service' for mongodb while downloading it, i have to run 'mongod' command in my terminal/powershell and click on connect to localhost in my mongodb app in order connect.
+
+This connection string can be passed in mongoose and connected to local database: 
+mongodb://localhost:27017/
+
+connnecting to our databse using mongoose:
+> npm i -D nodemon -> installing nodemon as a part of devDependencies
+
+const connectToMongo = () => {
+    mongoose.connect(mongoURI, () => {
+     console.log("connected to mongo successfully");
+ })   
+}
+as of recent versions of Mongoose, mongoose.connect() does not accept a callback anymore. Instead, it returns a promise.
+We use .then() to handle the success case when the connection is established and .catch() to handle any errors that occur during the connection process.
+
+> nodemon index.js
+
+used express to create API server (see index.js)
+
+Now if we sent a GET request to http://localhost:3000 using tunder-client we get a response (will get whatever we set in our endpoint that is app.get() in my code).
+
+We need more endpoints to write to database, to authenticate user, to check if user is connect and fetch him/her data, to also fetch notes and display in react UI.
+
+--------------------------------------------------------------------
