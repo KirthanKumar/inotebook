@@ -1,5 +1,5 @@
 #46 - Adding Data Validation Using express-validator:
-
+https://express-validator.github.io/docs/
 npm install express-validator
 
 [
@@ -53,3 +53,20 @@ hash is a one way function. suppose say a client requests backend for login. Cli
 If a client is using a common password and a hacker owns a rainbow table(contains hash value of some common passwords). And if hacker hacks into the database he/she can find the corresponding password for hash value in database and hack into account. To overcome this limitation we use salt.
 
 backend adds salt to password and hashes it and stores it in database. 
+
+--------------------------------------------------------------------
+
+#49 - Hashing Passwords using bcryptjs in Nodejs:
+npm i bcryptjs
+https://www.npmjs.com/package/bcryptjs
+
+Till now in response we were showing the users details to themselves, but we should give the client token. There are different tokens like session token, json web token (JWT). In this MERN course we will use JWT authentication.
+
+Using JWT is we can verify user. The user will send credentials again and again. After authenticating a user we will give them a token. Whenever a protected route wants to access the website through express server, the client sends the token so that we can verify. Whenever i dispatch a JWT from my server, i will sign it with my secret key. With the help of secret key we can also get to know whether someone tried to tamper. With the help of 3rd part of JWT. jwt.verify() can be used to know if it got verified correcly or not. 
+
+JWT untimately facilitates a very secure connecton between client and server.
+
+npm i jsonwebtoken
+
+https://www.npmjs.com/package/jsonwebtoken
+https://jwt.io/
