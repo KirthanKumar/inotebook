@@ -25,6 +25,20 @@ this checks if error occured or not. Error occured means not following our valid
 we can also specify our custom error messages like done above
 
 check if getting error by not following validation using tunder-client.
+see 'checking validation' request in tunder-client
 
 -----------------------------------
+
+User.create({
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password,
+}).then((user) => res.json(user));
+this will create User and save date to the database
+
+and if we try to send POST request with same set of data again it throws error. that means our validation was successful
+
+see 'validation + saving data to perticular database' request in tunder-client
+
+--------------------------------------------------------------------
 

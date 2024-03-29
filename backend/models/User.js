@@ -8,4 +8,7 @@ const userSchema = new Schema({
   date: { type: Date, default: Date.now }, // should not do Date.now() instead should only specify function which should run when a document will get inserted to mongo. So do Date.now
 });
 
-module.exports = mongoose.model("user", userSchema);
+const User = mongoose.model("user", userSchema);
+User.createIndexes();
+
+module.exports = User;
