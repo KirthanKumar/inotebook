@@ -1,0 +1,30 @@
+#46 - Adding Data Validation Using express-validator:
+
+npm install express-validator
+
+[
+    body("name").isLength({ min: 3 }),
+    body("email").isEmail(),
+    body("password").isLength({ min: 5 }),
+]
+this is Validation array passed as second argument to router.post() method 
+
+(req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+}
+this checks if error occured or not. Error occured means not following our validation. If error occured it responds with array of errors.
+
+[
+    body("name", "Enter a valid name").isLength({ min: 3 }),
+    body("email", "Enter a valid email").isEmail(),
+    body("password", "Password must be atleast 5 characters long").isLength({ min: 5 }),
+]
+we can also specify our custom error messages like done above
+
+check if getting error by not following validation using tunder-client.
+
+-----------------------------------
+
