@@ -42,3 +42,14 @@ used bootstrap card
 
 --------------------------------------------------------------------
 
+#62 - Adding font awesome icons to iNotebook:
+https://fontawesome.com/kits
+email -> dagid37258@sentrau.com
+password -> dagid37258@sentrau
+https://fontawesome.com/kits/5d3ac3d4be/setup
+
+delete icon used:
+<i class="fa-solid fa-trash"></i> 
+
+edit icon used:
+<i class="fa-solid fa-pen-to-square"></i>
