@@ -1,0 +1,12 @@
+#55 - iNotebook React Project Setup :
+npm i react-router-dom concurrently
+npm i concurrently
+concurrently -> Run multiple commands concurrently.
+
+added this to scripts section package.json: 
+"both":"concurrently \"npm run start\" \"nodemon backend/index.js\""
+
+after this if we do 'npm both' or 'npm run both', both the commans will run simultaneously.
+
+https://react-bootstrap.netlify.app/  we can use this also but we are not.
+
