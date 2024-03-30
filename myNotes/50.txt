@@ -2,3 +2,16 @@
 
 --------------------------------------------------------------------
 
+#51 - Creating a middleware to decode user from a JWT:
+
+for this login is required. That means that we have to send JWT token to this. With the help of token we will fetch all details.
+
+We have to decode the JWT token and take out user id from it. middleware is basically a function which is called when there is a request send to routes which requires login.
+
+see 'Get logged in User Data except password' request.
+
+--------------------------------------------------------------------
+
+#52 - Fetching all notes & Adding a Note:
+see 'Fetch All notes' request.
+see 'Add Note' request.

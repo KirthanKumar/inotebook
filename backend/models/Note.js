@@ -1,9 +1,9 @@
 const { default: mongoose } = require("mongoose");
 
-import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const notesSchema = new Schema({
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "user" }, // this is like foreign key in mysql. This is done to associate notes with the user
   title: { type: String, required: true },
   description: { type: String, required: true },
   tag: { type: String, default: "General" },
