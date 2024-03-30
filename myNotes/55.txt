@@ -23,3 +23,10 @@ Context API is a solution for prop drilling discussed earlier. We will create a 
 --------------------------------------------------------------------
 
 #58 - useContext hook: Using React Context API:
+
+--------------------------------------------------------------------
+
+#59 - useLocation Hook in recat:
+https://reactrouter.com/en/main/hooks/use-location
+
+--------------------------------------------------------------------
