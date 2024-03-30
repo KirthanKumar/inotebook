@@ -15,3 +15,13 @@ see 'Get logged in User Data except password' request.
 #52 - Fetching all notes & Adding a Note:
 see 'Fetch All notes' request.
 see 'Add Note' request.
+
+--------------------------------------------------------------------
+
+#53 - Updating an existing Note:
+see 'Update Note' request.
+
+--------------------------------------------------------------------
+
+#54 - Endpoint for deleting a note:
+see 'Delete Note' request.
