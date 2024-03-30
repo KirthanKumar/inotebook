@@ -26,7 +26,13 @@ Context API is a solution for prop drilling discussed earlier. We will create a 
 
 --------------------------------------------------------------------
 
-#59 - useLocation Hook in recat:
+#59 - useLocation Hook in react:
 https://reactrouter.com/en/main/hooks/use-location
 
 --------------------------------------------------------------------
+
+#60 - iNotebook: Fetching notes from context:
+For now we are hardcoring data. Later will do API request and fetch data from database.
+
+--------------------------------------------------------------------
+
