@@ -13,3 +13,10 @@ https://react-bootstrap.netlify.app/  we can use this also but we are not.
 --------------------------------------------------------------------
 
 #56 - Creating Navbar and Routes:
+
+--------------------------------------------------------------------
+
+#57 - Introduction to React Context API:
+Context API is frequently used in commplex applications. A react app comprises of state and components. 
+Context API is a solution for prop drilling discussed earlier. We will create a Context independent to this app using CreateContext. And will use it using UseContext() hook anywhere in any component. Instead of passing props to a perticualar component a low level through nested components
+
