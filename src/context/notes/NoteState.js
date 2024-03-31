@@ -42,12 +42,36 @@ const NoteState = (props) => {
 
   const [notes, setNotes] = useState(initialnotes);
 
+  // Add a Note
+  const addNote = (title, description, tag) => {
+    // TODO: API CALL
+    console.log("Adding a new note");
+    const note = {
+      _id: "6607d37d49f68db91e430cb6", // _id should be unique
+      user: "66073ea95e16743143c5cfde",
+      title: title,
+      description: description,
+      tag: tag,
+      date: "2024-03-30T08:55:25.620Z [ADDED]",
+      __v: 0,
+    };
+
+    // setNotes(notes.push(note)); // concat returns an array whereas push updates an array. so we use concat not push
+    setNotes(notes.concat(note));
+  };
+
+  // Delete a Note
+  const deleteNote = () => {};
+
+  // Edit a Note
+  const editNote = () => {};
+
   return (
     // {/* { state, update } is same as { state:state, update:update } */}
     // <NoteContext.Provider value={{ state, update }}>
 
     // notes to access notes and setNotes to update notes
-    <NoteContext.Provider value={{ notes, setNotes }}>
+    <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote }}>
       {props.children}
     </NoteContext.Provider>
   );

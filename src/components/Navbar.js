@@ -1,18 +1,20 @@
-import React, { useEffect } from "react";
+import React from "react";
+// import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
   let location = useLocation();
   // from this useLocation() we can get object. This object also contains pathname key and its value if the current pathname that we are now in our application.
-  useEffect(() => {
-    console.log(location);
-    console.log(location.pathname);
-  }, [location]);
+
+  // useEffect(() => {
+  //   console.log(location);
+  //   console.log(location.pathname);
+  // }, [location]);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
-        <Link className="navbar-brand" to="#">
+        <Link className="navbar-brand" to="/">
           iNotebook
         </Link>
         <button
