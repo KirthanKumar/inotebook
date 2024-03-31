@@ -73,3 +73,8 @@ localhost/:1 Access to fetch at 'http://localhost:5000/api/notes/addnote' from o
 
 cd backend
 > npm install cors
+
+--------------------------------------------------------------------
+
+#66 - Adding a Modal for Editing Notes:
+used bootstrap modal. And will open modal via javascript: 
