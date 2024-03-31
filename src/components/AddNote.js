@@ -5,7 +5,11 @@ const AddNote = () => {
   const context = useContext(noteContext);
   const { addNote } = context;
 
-  const [note, setNote] = useState({ title: "", description: "", tag: "default" });
+  const [note, setNote] = useState({
+    title: "",
+    description: "",
+    tag: "default",
+  });
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -58,7 +62,7 @@ const AddNote = () => {
           </label>
         </div>
         <button type="submit" className="btn btn-primary" onClick={handleClick}>
-          Submit
+          Add Note
         </button>
       </form>
     </div>

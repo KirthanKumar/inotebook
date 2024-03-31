@@ -57,3 +57,19 @@ edit icon used:
 --------------------------------------------------------------------
 
 #63 - Adding AddNote component to iNotebook:
+
+--------------------------------------------------------------------
+
+#64 - Adding "delete note" functionality to iNotebook:
+
+--------------------------------------------------------------------
+
+#65 - Adding "delete note" and "fetch note" functionality to iNotebook:
+https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+
+https://expressjs.com/en/resources/middleware/cors.html
+fixing cors error in express. Got this error:
+localhost/:1 Access to fetch at 'http://localhost:5000/api/notes/addnote' from origin 'http://localhost:3000' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+
+cd backend
+> npm install cors
