@@ -7,7 +7,7 @@ import AddNote from "./AddNote";
 
 const Notes = () => {
   const context = useContext(noteContext);
-  const { notes, getNotes } = context;
+  const { notes, getNotes, editNote } = context;
 
   useEffect(() => {
     getNotes();
@@ -17,6 +17,7 @@ const Notes = () => {
   const updateNote = (currentNote) => {
     ref.current.click();
     setNote({
+      id:currentNote._id,
       etitle: currentNote.title,
       edescription: currentNote.description,
       etag: currentNote.tag,
@@ -24,6 +25,7 @@ const Notes = () => {
   };
 
   const ref = useRef(null);
+  const refClose = useRef(null);
 
   const [note, setNote] = useState({
     etitle: "",
@@ -32,8 +34,10 @@ const Notes = () => {
   });
 
   const handleClick = (e) => {
-    console.log("updating the note...", note);
-    e.preventDefault();
+    // console.log("updating the note...", note);
+    // e.preventDefault();
+    editNote(note.id, note.etitle, note.edescription, note.etag);
+    refClose.current.click();
   };
 
   const onChange = (e) => {
@@ -127,6 +131,7 @@ const Notes = () => {
                 type="button"
                 className="btn btn-secondary"
                 data-bs-dismiss="modal"
+                ref={refClose}
               >
                 Close
               </button>
