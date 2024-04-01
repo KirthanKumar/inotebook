@@ -11,3 +11,7 @@
 --------------------------------------------------------------------
 
 #70 - Adding Signup component to iNotebook:
+
+--------------------------------------------------------------------
+
+#71 - Adding Alerts to login, signup and notes component of iNotebook:
