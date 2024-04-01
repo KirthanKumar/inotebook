@@ -38,21 +38,7 @@ const NoteState = (props) => {
       },
       body: JSON.stringify({ title, description, tag }),
     });
-    const json = await response.json();
-    console.log(json);
-
-    console.log("Adding a new note");
-    const note = {
-      _id: "6607d37d49f68db91e430cb6", // _id should be unique
-      user: "66073ea95e16743143c5cfde",
-      title: title,
-      description: description,
-      tag: tag,
-      date: "2024-03-30T08:55:25.620Z [ADDED]",
-      __v: 0,
-    };
-
-    // setNotes(notes.push(note)); // concat returns an array whereas push updates an array. so we use concat not push
+    const note = await response.json();
     setNotes(notes.concat(note));
   };
 
@@ -68,9 +54,8 @@ const NoteState = (props) => {
       },
     });
     const json = await response.json();
-    console.log(json);
-
-    console.log("Deleting the note with id" + id);
+    // console.log(json);
+    // console.log("Deleting the note with id" + id);
     const newNotes = notes.filter((note) => {
       return note._id !== id;
     });
@@ -91,12 +76,11 @@ const NoteState = (props) => {
       body: JSON.stringify({ title, description, tag }),
     });
     const json = await response.json();
-    console.log(json);
+    // console.log(json);
 
     // Logic to edit in client not in database
     let newNotes = JSON.parse(JSON.stringify(notes));
     for (let index = 0; index < newNotes.length; index++) {
-
       if (newNotes[index]._id === id) {
         newNotes[index].title = title;
         newNotes[index].description = description;

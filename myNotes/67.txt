@@ -1,3 +1,5 @@
 #67 - Updating Notes on edit in the UI using React:
 
 --------------------------------------------------------------------
+
+#68 - Adding Frontend Validation + Few fixes in iNotebook:
