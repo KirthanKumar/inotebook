@@ -3,3 +3,7 @@
 --------------------------------------------------------------------
 
 #68 - Adding Frontend Validation + Few fixes in iNotebook:
+
+--------------------------------------------------------------------
+
+#69 - Adding Login Component to iNotebook:
