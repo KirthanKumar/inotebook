@@ -15,3 +15,7 @@
 --------------------------------------------------------------------
 
 #71 - Adding Alerts to login, signup and notes component of iNotebook:
+
+--------------------------------------------------------------------
+
+#72 - Fetching User Specific Notes in iNotebook:
