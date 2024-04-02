@@ -2,24 +2,24 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import avataars from "../images/avataaars.png";
 
-
 const Signup = (props) => {
   const [credentials, setCredentials] = useState({
     name: "",
     email: "",
     password: "",
     cpassword: "",
+    otp: "",
   });
 
   let navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSendOTP = async (e) => {
+    // e.preventDefault();
     if (credentials.password !== credentials.cpassword) {
       props.showAlert("Password did not match", "danger");
       return;
     }
-    const response = await fetch("http://localhost:5000/api/auth/createuser", {
+    const response = await fetch("http://localhost:5000/api/sauth/createUser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -33,12 +33,40 @@ const Signup = (props) => {
     const json = await response.json();
     console.log(json);
 
+    // if (json.success) {
+    //   // save the auth token and redirect
+    //   localStorage.setItem("token", json.authtoken);
+    //   navigate("/");
+    //   props.showAlert("Account Created Successfully", "success");
+
+    // } else {
+    //   props.showAlert("Invalid credentials", "danger");
+    // }
+  };
+
+  const handleVerifyOTP = async (e) => {
+    e.preventDefault();
+    const response = await fetch("http://localhost:5000/api/sauth/verifyOTP", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name:credentials.name, 
+        email: credentials.email,
+        otp: credentials.otp,
+        password:credentials.password
+      }),
+    });
+
+    const json = await response.json();
+    console.log(json);
+
     if (json.success) {
       // save the auth token and redirect
-      localStorage.setItem("token", json.authtoken);
+      localStorage.setItem("token", json.authToken);
       navigate("/");
       props.showAlert("Account Created Successfully", "success");
-
     } else {
       props.showAlert("Invalid credentials", "danger");
     }
@@ -66,7 +94,7 @@ const Signup = (props) => {
       </Link> */}
       <div className="col-md-7 ps-5 pe-5 pt-5" style={{ width: "50%" }}>
         <h2>Create an account to use iNotebook</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleVerifyOTP}>
           <div className="mb-3">
             <label htmlFor="name" className="form-label">
               Name *
@@ -125,8 +153,29 @@ const Signup = (props) => {
               required
             />
           </div>
+          <button
+            // type="submit"
+            className="btn btn-outline-primary"
+            onClick={()=>{handleSendOTP()}}
+          >
+            Send OTP
+          </button>
+          <div className="mb-3">
+            <label htmlFor="cpassword" className="form-label">
+              Enter OTP *
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="otp"
+              name="otp"
+              value={credentials.otp}
+              onChange={onChange}
+              required
+            />
+          </div>
           <button type="submit" className="btn btn-outline-primary">
-            Submit
+            Verify OTP
           </button>
         </form>
       </div>
