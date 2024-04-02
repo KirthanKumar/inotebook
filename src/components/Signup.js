@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import avataars from "../images/avataaars.png";
+
 
 const Signup = (props) => {
   const [credentials, setCredentials] = useState({
@@ -13,6 +15,10 @@ const Signup = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (credentials.password !== credentials.cpassword) {
+      props.showAlert("Password did not match", "danger");
+      return;
+    }
     const response = await fetch("http://localhost:5000/api/auth/createuser", {
       method: "POST",
       headers: {
@@ -43,71 +49,87 @@ const Signup = (props) => {
   };
 
   return (
-    <div className="container mt-2">
-      <h2>Create an account to use iNotebook</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="name" className="form-label">
-            Name
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="name"
-            aria-describedby="emailHelp"
-            name="name"
-            value={credentials.name}
-            onChange={onChange}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">
-            Email address
-          </label>
-          <input
-            type="email"
-            className="form-control"
-            id="email"
-            aria-describedby="emailHelp"
-            name="email"
-            value={credentials.email}
-            onChange={onChange}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">
-            Password
-          </label>
-          <input
-            type="password"
-            className="form-control"
-            id="password"
-            name="password"
-            value={credentials.password}
-            onChange={onChange}
-            minLength={5}
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="cpassword" className="form-label">
-            Confirm Password
-          </label>
-          <input
-            type="password"
-            className="form-control"
-            id="cpassword"
-            name="cpassword"
-            value={credentials.cpassword}
-            onChange={onChange}
-            minLength={5}
-            required
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </form>
+    <div className="container mt-2 d-flex">
+      <div className="col-md-5">
+        <img
+          className="img-fluid"
+          src={avataars}
+          alt="register"
+          style={{ width: "100%", height: "80vh", objectFit: "cover" }}
+        />
+      </div>
+      {/* <Link to={"/"} role="button" className="mx-5">
+        <i className="fa-solid fa-arrow-left" style={{ color: "#74C0FC" }}>
+          {" "}
+          Home
+        </i>
+      </Link> */}
+      <div className="col-md-7 ps-5 pe-5 pt-5" style={{ width: "50%" }}>
+        <h2>Create an account to use iNotebook</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label htmlFor="name" className="form-label">
+              Name *
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="name"
+              aria-describedby="emailHelp"
+              name="name"
+              value={credentials.name}
+              onChange={onChange}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">
+              Email address *
+            </label>
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              aria-describedby="emailHelp"
+              name="email"
+              value={credentials.email}
+              onChange={onChange}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="password" className="form-label">
+              Password *
+            </label>
+            <input
+              type="password"
+              className="form-control"
+              id="password"
+              name="password"
+              value={credentials.password}
+              onChange={onChange}
+              minLength={5}
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="cpassword" className="form-label">
+              Confirm Password *
+            </label>
+            <input
+              type="password"
+              className="form-control"
+              id="cpassword"
+              name="cpassword"
+              value={credentials.cpassword}
+              onChange={onChange}
+              minLength={5}
+              required
+            />
+          </div>
+          <button type="submit" className="btn btn-outline-primary">
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

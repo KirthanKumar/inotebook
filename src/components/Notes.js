@@ -3,7 +3,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import noteContext from "../context/notes/noteContext";
 import NoteItem from "./NoteItem";
-import AddNote from "./AddNote";
+// import AddNote from "./AddNote";
 import { useNavigate } from "react-router-dom";
 
 const Notes = (props) => {
@@ -55,7 +55,7 @@ const Notes = (props) => {
 
   return (
     <>
-      <AddNote showAlert={props.showAlert} />
+      {/* <AddNote showAlert={props.showAlert} /> */}
 
       {/* <!-- Button trigger modal --> */}
       <button
@@ -140,7 +140,7 @@ const Notes = (props) => {
             <div className="modal-footer">
               <button
                 type="button"
-                className="btn btn-secondary"
+                className="btn btn-outline-primary"
                 data-bs-dismiss="modal"
                 ref={refClose}
               >
@@ -148,7 +148,7 @@ const Notes = (props) => {
               </button>
               <button
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-outline-primary"
                 onClick={handleClick}
                 disabled={
                   note.etitle.length < 5 || note.edescription.length < 5

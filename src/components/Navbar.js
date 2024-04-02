@@ -62,14 +62,14 @@ export default function Navbar() {
           {!localStorage.getItem("token") ? (
             <form className="d-flex">
               <Link
-                className="btn btn-primary mx-2"
+                className="btn btn-outline-primary mx-2"
                 to={"/login"}
                 role="button"
               >
                 Login
               </Link>
               <Link
-                className="btn btn-primary mx-2"
+                className="btn btn-outline-primary mx-2"
                 to={"/signup"}
                 role="button"
               >
@@ -77,7 +77,7 @@ export default function Navbar() {
               </Link>
             </form>
           ) : (
-            <button onClick={handleLogout} className="btn btn-primary">
+            <button onClick={handleLogout} className="btn btn-outline-primary">
               Logout
             </button>
           )}

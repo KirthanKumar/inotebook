@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import "../styles/home.css";
 
 const Login = (props) => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
@@ -36,41 +37,52 @@ const Login = (props) => {
   };
 
   return (
-    <div className="container mt-2">
-      <h2>Login to continue to iNotebook</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">
-            Email address
-          </label>
-          <input
-            type="email"
-            className="form-control"
-            id="email"
-            aria-describedby="emailHelp"
-            name="email"
-            value={credentials.email}
-            onChange={onChange}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">
-            Password
-          </label>
-          <input
-            type="password"
-            className="form-control"
-            id="password"
-            name="password"
-            value={credentials.password}
-            onChange={onChange}
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </form>
-    </div>
+    <>
+      <Link to={"/"} role="button">
+        <i className="fa-solid fa-arrow-left" style={{ color: "#74C0FC" }}>
+          {" "}
+          Home
+        </i>
+      </Link>
+      <div className="container mt-2 addnotes">
+        <h2>Login to continue using iNotebook</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">
+              Email address *
+            </label>
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              aria-describedby="emailHelp"
+              name="email"
+              value={credentials.email}
+              onChange={onChange}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="password" className="form-label">
+              Password *
+            </label>
+            <input
+              type="password"
+              className="form-control"
+              id="password"
+              name="password"
+              value={credentials.password}
+              onChange={onChange}
+            />
+          </div>
+          <button type="submit" className="btn btn-outline-primary">
+            Submit
+          </button>
+        </form>
+        <p className="mt-3">
+          Don't have an account? <Link to="/signup">register</Link>{" "}
+        </p>
+      </div>
+    </>
   );
 };
 
