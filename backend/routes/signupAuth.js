@@ -142,11 +142,18 @@ router.post("/verifyOTP", async (req, res) => {
         };
         const authToken = jwt.sign(data, JWT_SECRET);
         //   console.log(authToken);
+
+        await OTPModel.deleteOne({ otp });
         success = true;
+
         return res.status(200).json({
           success,
-            message: "OTP has been been verified successfully. And user created with auth token " + authToken,
-          authToken:authToken
+          message:
+            "OTP has been been verified successfully. And user created with auth token " +
+            authToken,
+          authToken: authToken,
+          email: req.body.email,
+          name: req.body.name
         });
       } else {
         return res

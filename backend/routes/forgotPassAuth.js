@@ -90,7 +90,6 @@ router.post("/resetpassword/:token", async (req, res) => {
     console.log(Date.now());
 
     if (!passwordResetToken || passwordResetToken.expires < Date.now()) {
-      // await PasswordResetModel.deleteOne({ token });
       return res.status(400).json({ error: "Invalid or expired token. " });
     }
 
@@ -110,7 +109,7 @@ router.post("/resetpassword/:token", async (req, res) => {
     await user.save();
 
     // Delete the password reset token
-    // await PasswordResetModel.deleteOne({ token });
+    await PasswordResetModel.deleteOne({ token });
 
     success = true;
 

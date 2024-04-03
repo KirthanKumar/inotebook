@@ -1,6 +1,7 @@
 import React from "react";
 // import { useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import MyProfile from "./MyProfile";
 
 export default function Navbar() {
   let location = useLocation();
@@ -59,6 +60,7 @@ export default function Navbar() {
               </Link>
             </li>
           </ul>
+          {localStorage.getItem("token") && <MyProfile/>}
           {!localStorage.getItem("token") ? (
             <form className="d-flex">
               <Link
@@ -77,7 +79,7 @@ export default function Navbar() {
               </Link>
             </form>
           ) : (
-            <button onClick={handleLogout} className="btn btn-outline-primary">
+            <button onClick={handleLogout} className="btn btn-outline-primary mx-2">
               Logout
             </button>
           )}

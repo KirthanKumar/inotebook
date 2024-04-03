@@ -35,23 +35,23 @@ const JWT_SECRET = "whatsoever";
 //           .json({success, error: "Sorry a user with this email already exists" });
 //       }
 
-      // const salt = await bcrypt.genSalt(10);
-      // const secPass = await bcrypt.hash(req.body.password, salt); // we do await as it returns promise
+// const salt = await bcrypt.genSalt(10);
+// const secPass = await bcrypt.hash(req.body.password, salt); // we do await as it returns promise
 
-      // user = await User.create({
-      //   name: req.body.name,
-      //   email: req.body.email,
-      //   password: secPass,
-      // });
+// user = await User.create({
+//   name: req.body.name,
+//   email: req.body.email,
+//   password: secPass,
+// });
 
-      // const data = {
-      //   user: {
-      //     id: user.id,
-      //   },
-      // };
-      // const authToken = jwt.sign(data, JWT_SECRET);
-      // //   console.log(authToken);
-      // success = true;
+// const data = {
+//   user: {
+//     id: user.id,
+//   },
+// };
+// const authToken = jwt.sign(data, JWT_SECRET);
+// //   console.log(authToken);
+// success = true;
 //       res.json({success, authToken });
 //     } catch (error) {
 //       console.log(error.message);
@@ -98,7 +98,12 @@ router.post(
       const data = { user: { id: user.id } };
       const authtoken = jwt.sign(data, JWT_SECRET);
       success = true;
-      res.json({ success, authtoken });
+      res.json({
+        success,
+        authtoken,
+        email: req.body.email,
+        name: user.name,
+      });
     } catch (error) {
       console.log(error.message);
       res.status(500).send("Internal Server Error");

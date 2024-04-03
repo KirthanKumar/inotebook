@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ResetPassword = (props) => {
   const { token } = useParams();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const navigate = useNavigate();
 
   const resetPassword = async () => {
     try {
@@ -25,6 +26,7 @@ const ResetPassword = (props) => {
 
       if (json.success) {
         props.showAlert(json.message, "success");
+        navigate("/login");
       } else {
         props.showAlert(json.error, "danger");
       }

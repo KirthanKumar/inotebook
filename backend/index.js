@@ -15,6 +15,7 @@ app.use("/api/auth", require("./routes/auth"));
 app.use("/api/sauth", require("./routes/signupAuth"))
 app.use("/api/notes", require("./routes/notes"));
 app.use("/api/fpauth", require("./routes/forgotPassAuth"))
+app.use("/api/dauth", require("./routes/deleteAccountRoute"))
 
 app.listen(port, () => {
   console.log(`iNotebook app listening on http://localhost:${port}`);

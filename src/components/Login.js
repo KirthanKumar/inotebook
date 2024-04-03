@@ -21,10 +21,13 @@ const Login = (props) => {
     });
     const json = await response.json();
     console.log(json);
+    
 
     if (json.success) {
       // save the auth token and redirect
       localStorage.setItem("token", json.authtoken);
+      localStorage.setItem("name", json.name);
+      localStorage.setItem("email", json.email);
       navigate("/");
       props.showAlert("Logged In Successfully", "success");
     } else {
