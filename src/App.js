@@ -9,6 +9,8 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import { useState } from "react";
 import AddNote from "./components/AddNote";
+import ForgotPassword from "./components/ForgotPassword";
+import ResetPassword from "./components/ResetPassword";
 
 function App() {
   const [alert, setAlert] = useState(null);
@@ -45,6 +47,15 @@ function App() {
                 exact
                 path="/addnote"
                 element={<AddNote showAlert={showAlert} />}
+              />
+              <Route
+                exact
+                path="/forgotpassword"
+                element={<ForgotPassword showAlert={showAlert} />}
+              />
+              <Route
+                path="/resetpassword/:token"
+                element={<ResetPassword showAlert={showAlert} />}
               />
             </Routes>
           </div>

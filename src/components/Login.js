@@ -79,6 +79,9 @@ const Login = (props) => {
           </button>
         </form>
         <p className="mt-3">
+          Forgot password? <Link to="/forgotpassword">reset</Link>{" "}
+        </p>
+        <p className="mt-3">
           Don't have an account? <Link to="/signup">register</Link>{" "}
         </p>
       </div>

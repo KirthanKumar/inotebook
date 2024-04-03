@@ -87,7 +87,7 @@ router.post(
           .json({ error: "Please try to login with correct credentials" });
       }
 
-      const passwordCompare = bcrypt.compare(password, user.password);
+      const passwordCompare = await bcrypt.compare(password, user.password);
 
       if (!passwordCompare) {
         return res
