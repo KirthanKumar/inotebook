@@ -11,6 +11,7 @@ import { useState } from "react";
 import AddNote from "./components/AddNote";
 import ForgotPassword from "./components/ForgotPassword";
 import ResetPassword from "./components/ResetPassword";
+import ConfirmLogin from "./components/ConfirmLogin";
 
 function App() {
   const [alert, setAlert] = useState(null);
@@ -56,6 +57,14 @@ function App() {
               <Route
                 path="/resetpassword/:token"
                 element={<ResetPassword showAlert={showAlert} />}
+              />
+              <Route
+                path="/resetpassword/:token"
+                element={<ResetPassword showAlert={showAlert} />}
+              />
+              <Route
+                path="/confirmLogin"
+                element={<ConfirmLogin showAlert={showAlert} />}
               />
             </Routes>
           </div>

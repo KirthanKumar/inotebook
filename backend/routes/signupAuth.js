@@ -98,12 +98,43 @@ router.post(
 
 // const express = require("express");
 // const router = express.Router();
+const DeviceModel = require("../models/DeviceModel");
+const useragent = require("useragent");
 
 // router - 2
 router.post("/verifyOTP", async (req, res) => {
   let success = false;
   try {
-    const { email, otp} = req.body;
+    // Extract browser information from the request headers
+    const userAgentString = req.headers["user-agent"];
+    const agent = useragent.parse(userAgentString);
+    console.log(agent);
+    // Extracting OS, version, browser and ipAddress
+    const os = agent.os.toString();
+    const browser = agent.toAgent();
+    const version = agent.toVersion();
+    const ipAddress = req.ip;
+
+    console.log(os);
+    console.log(browser);
+    console.log(version);
+    console.log(ipAddress);
+
+    // Create a new Device document with the extracted information
+    const newDevice = new DeviceModel({
+      os,
+      browser,
+      version: version,
+      ipAddress: ipAddress,
+      // user: req.user.id,
+    });
+
+    console.log(newDevice);
+    await newDevice.save();
+
+    // ----------------
+
+    const { email, otp } = req.body;
 
     // Find the OTP from the database based on the email
     const otpRecord = await OTPModel.findOne({ email });
@@ -143,6 +174,9 @@ router.post("/verifyOTP", async (req, res) => {
         const authToken = jwt.sign(data, JWT_SECRET);
         //   console.log(authToken);
 
+        newDevice.user = user._id;
+        await newDevice.save();
+
         await OTPModel.deleteOne({ otp });
         success = true;
 
@@ -153,19 +187,22 @@ router.post("/verifyOTP", async (req, res) => {
             authToken,
           authToken: authToken,
           email: req.body.email,
-          name: req.body.name
+          name: req.body.name,
         });
       } else {
-        return res
-          .status(400)
-          .json({ error: "OTP has expired. Please request a new one." });
+        return res.status(400).json({
+          error: "OTP has expired. Please request a new one.",
+          success,
+        });
       }
     } else {
-      return res.status(400).json({ error: "Invalid OTP. Please try again. " + otp});
+      return res
+        .status(400)
+        .json({ error: "Invalid OTP. Please try again. " + otp });
     }
   } catch (error) {
     console.error(error.message);
-    res.status(500).send("Server Error"+error);
+    res.status(500).send("Server Error" + error);
   }
 });
 

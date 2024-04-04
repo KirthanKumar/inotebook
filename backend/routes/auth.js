@@ -61,6 +61,12 @@ const JWT_SECRET = "whatsoever";
 // );
 
 // Route 2 : Authenticate a user using : POST "/api/auth/login". No login required
+const DeviceModel = require("../models/DeviceModel");
+// const { useNavigate } = require("react-router-dom");
+const confirmationCodeModel = require("../models/ConfirmationCodeModel");
+const useragent = require("useragent");
+const nodemailer = require("nodemailer");
+
 router.post(
   "/login",
   [
@@ -71,6 +77,7 @@ router.post(
   ],
   async (req, res) => {
     let success = false;
+
     //   if there are errors return bad request and the errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -86,6 +93,7 @@ router.post(
           .status(400)
           .json({ error: "Please try to login with correct credentials" });
       }
+      console.log(user);
 
       const passwordCompare = await bcrypt.compare(password, user.password);
 
@@ -97,13 +105,105 @@ router.post(
 
       const data = { user: { id: user.id } };
       const authtoken = jwt.sign(data, JWT_SECRET);
-      success = true;
-      res.json({
-        success,
-        authtoken,
-        email: req.body.email,
-        name: user.name,
+      console.log(authtoken);
+
+      // =================================
+      // Extract browser information from the request headers
+      const userAgentString = req.headers["user-agent"];
+      const agent = useragent.parse(userAgentString);
+      console.log(agent);
+      // Extracting OS, version, browser and ipAddress
+      const os = agent.os.toString();
+      const browser = agent.toAgent();
+      const version = agent.toVersion();
+      const ipAddress = req.ip;
+
+      console.log(os);
+      console.log(browser);
+      console.log(version);
+      console.log(ipAddress);
+
+      // const navigate = useNavigate();
+
+      console.log(user);
+
+      const device = await DeviceModel.findOne({
+        os,
+        browser,
+        version: version,
+        user: user._id,
       });
+
+      console.log(device);
+
+      if (!device) {
+        // res.json({
+        //   success,
+        //   authtoken,
+        //   email: req.body.email,
+        //   name: user.name,
+        // });
+
+        // navigate("/confirmLogin");
+        // res.send("Login from unrecognized device.");
+
+        // Generate a random password reset token
+        const confirmationCode = Math.random().toString(36).substring(2, 8);
+
+        // Update user's resetPasswordToken and resetPasswordExpires fields
+        await confirmationCodeModel.create({
+          email: req.body.email,
+          confirmationCode: confirmationCode,
+        });
+
+        // Send OTP via email
+        const transporter = nodemailer.createTransport({
+          service: "gmail",
+          tls: {
+            rejectUnauthorized: false, // Disables SSL certificate verification
+          },
+          auth: {
+            user: "kirthan.cs21@bmsce.ac.in", // Enter your email address
+            pass: "dystopia135680@?", // Enter your email password or app-specific password
+          },
+        });
+
+        const mailOptions = {
+          from: "kirthan.cs21@bmsce.ac.in",
+          to: req.body.email,
+          subject: "Email Verification OTP",
+          text: `Your confirmation code for login verification is: ${confirmationCode}. This confirmation code is valid for 10 minutes. Visit http://localhost:3000/confirmlogin and enter the code.`,
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+          if (error) {
+            console.log(error);
+            return res.status(500).json({
+              success,
+              error: "Failed to send email. Please try again later." + error,
+            });
+          }
+          console.log("Email sent: " + info.response);
+          return res.status(200).json({
+            success,
+            message:
+              "Confirmation code has been sent to your email for verification.",
+          });
+        });
+      }
+
+      // -------------------------------------
+      if (device) {
+        success = true;
+
+        res.json({
+          success,
+          authtoken,
+          email: req.body.email,
+          name: user.name,
+        });
+      }
+
     } catch (error) {
       console.log(error.message);
       res.status(500).send("Internal Server Error");
