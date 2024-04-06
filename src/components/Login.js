@@ -4,8 +4,18 @@ import "../styles/home.css";
 
 const Login = (props) => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
+  const [togglePassword, setTogglePassword] = useState(true);
 
   let navigate = useNavigate();
+
+  const passwordSeeAndUnsee = () => {
+    if (togglePassword === true) {
+      setTogglePassword(false);
+    }
+    else {
+      setTogglePassword(true);
+    }
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -69,12 +79,13 @@ const Login = (props) => {
               Password *
             </label>
             <input
-              type="password"
+              type={togglePassword?"password":"text"}
               className="form-control"
               id="password"
               name="password"
               value={credentials.password}
               onChange={onChange}
+              onMouseDown={passwordSeeAndUnsee}
             />
           </div>
           <button type="submit" className="btn btn-outline-primary">

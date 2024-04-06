@@ -4,6 +4,8 @@ const nodemailer = require("nodemailer");
 const User = require("../models/User"); // Assuming you have a User model defined
 const PasswordResetModel = require("../models/PasswordResetModel");
 
+require("dotenv").config();
+
 // Route for handling forgot password request
 router.post("/forgotpassword", async (req, res) => {
   const success = false;
@@ -32,14 +34,14 @@ router.post("/forgotpassword", async (req, res) => {
         rejectUnauthorized: false, // Disables SSL certificate verification
       },
       auth: {
-        user: "kirthan.cs21@bmsce.ac.in", // Enter your email address
-        pass: "dystopia135680@?", // Enter your email password or app-specific password
+        user: "testingmernapp@gmail.com", // Enter your email address
+        pass: "enfz hdqk kvwk janp", // Enter your email password or app-specific password
       },
     });
 
     // Email content
     const mailOptions = {
-      from: "kirthan.cs21@bmsce.ac.in",
+      from: "iNotebook",
       to: user.email,
       subject: "Password Reset Request",
       text:

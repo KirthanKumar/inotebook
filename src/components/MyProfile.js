@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const MyProfile = () => {
-    const [showModal, setShowModal] = useState(false);
-    const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
 
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
@@ -24,14 +24,17 @@ const MyProfile = () => {
             },
             body: JSON.stringify({ password }),
           }
-          );
-          const json = response.json();
+        );
+        const json = await response.json();
+        console.log(json);
         if (json.success) {
           alert("Account deleted successfully!");
-            handleClose();
-            navigate("/signup");
+          handleClose();
+          navigate("/signup");
         } else {
-          alert("Failed to delete account. Please try again later.");
+          alert(
+            "Failed to delete account. Please try again later. " + json.error
+          );
         }
       } catch (error) {
         console.error("Error deleting account:", error);

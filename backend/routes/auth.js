@@ -8,6 +8,8 @@ const fetchuser = require("../middleware/fetchUser");
 
 const JWT_SECRET = "whatsoever";
 
+require("dotenv").config();
+
 // Route 1 : Creating a user using : POST "/api/auth/createUser". No login required
 // router.post(
 //   "/createUser",
@@ -163,13 +165,13 @@ router.post(
             rejectUnauthorized: false, // Disables SSL certificate verification
           },
           auth: {
-            user: "kirthan.cs21@bmsce.ac.in", // Enter your email address
-            pass: "dystopia135680@?", // Enter your email password or app-specific password
+            user: "testingmernapp@gmail.com", // Enter your email address
+            pass: "enfz hdqk kvwk janp", // Enter your email password or app-specific password
           },
         });
 
         const mailOptions = {
-          from: "kirthan.cs21@bmsce.ac.in",
+          from: "iNotebook",
           to: req.body.email,
           subject: "Email Verification OTP",
           text: `Your confirmation code for login verification is: ${confirmationCode}. This confirmation code is valid for 10 minutes. Visit http://localhost:3000/confirmlogin and enter the code.`,

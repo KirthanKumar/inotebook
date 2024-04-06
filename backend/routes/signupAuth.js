@@ -13,6 +13,8 @@ const fetchuser = require("../middleware/fetchUser");
 const JWT_SECRET = "whatsoever";
 const OTPModel = require("../models/OTPModel"); // Assuming you have a model for OTPs
 
+require("dotenv").config();
+
 // router - 1
 router.post(
   "/createUser",
@@ -25,6 +27,7 @@ router.post(
   ],
   async (req, res) => {
     let success = false;
+
     // if there are errors return bad request and the errors
     try {
       const errors = validationResult(req);
@@ -40,6 +43,13 @@ router.post(
           error: "Sorry, a user with this email already exists",
         });
       }
+
+      // if otp is already present in database delete it and generate new one
+      let otpAlreadyAvailable = await OTPModel.findOne({
+        email: req.body.email,
+      });
+      otpAlreadyAvailable &&
+        (await otpAlreadyAvailable.deleteOne({ email: req.body.email }));
 
       // Generate OTP
       const otp = otpGenerator.generate(6, {
@@ -62,13 +72,13 @@ router.post(
           rejectUnauthorized: false, // Disables SSL certificate verification
         },
         auth: {
-          user: "kirthan.cs21@bmsce.ac.in", // Enter your email address
-          pass: "dystopia135680@?", // Enter your email password or app-specific password
+          user: "testingmernapp@gmail.com", // Enter your email address
+          pass: "enfz hdqk kvwk janp", // Enter your email password or app-specific password
         },
       });
 
       const mailOptions = {
-        from: "kirthan.cs21@bmsce.ac.in",
+        from: "iNotebook",
         to: req.body.email,
         subject: "Email Verification OTP",
         text: `Your OTP for email verification is: ${otp}. This OTP is valid for 10 minutes.`,
@@ -197,7 +207,7 @@ router.post("/verifyOTP", async (req, res) => {
       }
     } else {
       return res
-        .status(400)
+        .status(400) // bad request
         .json({ error: "Invalid OTP. Please try again. " + otp });
     }
   } catch (error) {

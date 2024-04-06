@@ -11,7 +11,17 @@ const Signup = (props) => {
     otp: "",
   });
 
+  const [togglePassword, setTogglePassword] = useState(true);
+
   let navigate = useNavigate();
+
+  const passwordSeeAndUnsee = () => {
+    if (togglePassword === true) {
+      setTogglePassword(false);
+    } else {
+      setTogglePassword(true);
+    }
+  };
 
   const handleSendOTP = async (e) => {
     // e.preventDefault();
@@ -130,7 +140,7 @@ const Signup = (props) => {
               Password *
             </label>
             <input
-              type="password"
+              type={togglePassword ? "password" : "text"}
               className="form-control"
               id="password"
               name="password"
@@ -138,6 +148,7 @@ const Signup = (props) => {
               onChange={onChange}
               minLength={5}
               required
+              onMouseDown={passwordSeeAndUnsee}
             />
           </div>
           <div className="mb-3">
@@ -145,7 +156,7 @@ const Signup = (props) => {
               Confirm Password *
             </label>
             <input
-              type="password"
+              type={togglePassword ? "password" : "text"}
               className="form-control"
               id="cpassword"
               name="cpassword"
@@ -153,12 +164,15 @@ const Signup = (props) => {
               onChange={onChange}
               minLength={5}
               required
+              onMouseDown={passwordSeeAndUnsee}
             />
           </div>
           <button
             // type="submit"
             className="btn btn-outline-primary"
-            onClick={()=>{handleSendOTP()}}
+            onClick={() => {
+              handleSendOTP();
+            }}
           >
             Send OTP
           </button>
