@@ -1,7 +1,10 @@
 // here we are using commonjs modules not ES6 modules
 
 const mongoose = require("mongoose");
-const mongoURI = "mongodb://localhost:27017/inotebook";
+const mongoURI =
+  "mongodb+srv://skirthankumar13579:" +
+  encodeURIComponent("testingmern@kirthan") +
+  "@mern.9b1vtuo.mongodb.net/iNotebook";
 
 const connectToMongo = () => {
   mongoose
