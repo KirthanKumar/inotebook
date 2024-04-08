@@ -174,7 +174,7 @@ router.post(
           from: "iNotebook",
           to: req.body.email,
           subject: "Email Verification OTP",
-          text: `Your confirmation code for login verification is: ${confirmationCode}. This confirmation code is valid for 10 minutes. Visit http://localhost:3000/confirmlogin and enter the code.`,
+          text: `Your confirmation code for login verification is: ${confirmationCode}. This confirmation code is valid for 10 minutes. Visit https://kirthankumar.github.io/inotebook/#/confirmlogin and enter the code.`,
         };
 
         transporter.sendMail(mailOptions, (error, info) => {
