@@ -11,6 +11,8 @@ const Signup = (props) => {
     otp: "",
   });
 
+  const host = "https://inotebook-fpt7.onrender.com";
+
   const [togglePassword, setTogglePassword] = useState(true);
 
   let navigate = useNavigate();
@@ -29,7 +31,7 @@ const Signup = (props) => {
       props.showAlert("Password did not match", "danger");
       return;
     }
-    const response = await fetch("http://localhost:5000/api/sauth/createUser", {
+    const response = await fetch(`${host}/api/sauth/createUser`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -56,16 +58,16 @@ const Signup = (props) => {
 
   const handleVerifyOTP = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/api/sauth/verifyOTP", {
+    const response = await fetch(`${host}/api/sauth/verifyOTP`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name:credentials.name, 
+        name: credentials.name,
         email: credentials.email,
         otp: credentials.otp,
-        password:credentials.password
+        password: credentials.password,
       }),
     });
 

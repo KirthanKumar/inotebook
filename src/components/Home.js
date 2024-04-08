@@ -2,9 +2,8 @@ import React from "react";
 import Notes from "./Notes";
 import { Link } from "react-router-dom";
 import noteImg from "../images/inotebook.svg";
-import "../styles/home.css"
+import "../styles/home.css";
 export default function Home(props) {
-
   return (
     <div className="container-fluid">
       <div className="row">

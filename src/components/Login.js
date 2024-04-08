@@ -5,21 +5,21 @@ import "../styles/home.css";
 const Login = (props) => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [togglePassword, setTogglePassword] = useState(true);
+  const host = "https://inotebook-fpt7.onrender.com";
 
   let navigate = useNavigate();
 
   const passwordSeeAndUnsee = () => {
     if (togglePassword === true) {
       setTogglePassword(false);
-    }
-    else {
+    } else {
       setTogglePassword(true);
     }
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/api/auth/login", {
+    const response = await fetch(`${host}/api/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -31,7 +31,6 @@ const Login = (props) => {
     });
     const json = await response.json();
     console.log(json);
-    
 
     if (json.success) {
       // save the auth token and redirect
@@ -79,7 +78,7 @@ const Login = (props) => {
               Password *
             </label>
             <input
-              type={togglePassword?"password":"text"}
+              type={togglePassword ? "password" : "text"}
               className="form-control"
               id="password"
               name="password"

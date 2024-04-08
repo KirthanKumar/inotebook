@@ -5,12 +5,13 @@ const ConfirmLogin = () => {
   const [confirmationCode, setConfirmationCode] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const host = "https://inotebook-fpt7.onrender.com";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       console.log("trying");
-      const response = await fetch("http://localhost:5000/api/confirmauth/confirm-login", {
+      const response = await fetch(`${host}/api/confirmauth/confirm-login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

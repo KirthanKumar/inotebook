@@ -6,11 +6,12 @@ const ResetPassword = (props) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
+  const host = "https://inotebook-fpt7.onrender.com";
 
   const resetPassword = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/fpauth/resetpassword/${token}`,
+        `${host}/api/fpauth/resetpassword/${token}`,
         {
           method: "POST",
           headers: {

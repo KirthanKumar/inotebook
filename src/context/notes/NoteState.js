@@ -2,7 +2,7 @@ import { useState } from "react";
 import NoteContext from "./noteContext";
 
 const NoteState = (props) => {
-  const host = "http://localhost:5000";
+  const host = "https://inotebook-fpt7.onrender.com";
 
   // For now we are hardcoring data. Later will do API request and fetch data from database.
   const initialnotes = [];

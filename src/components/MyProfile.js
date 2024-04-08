@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 const MyProfile = () => {
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
+  const host = "https://inotebook-fpt7.onrender.com";
 
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
@@ -15,7 +16,7 @@ const MyProfile = () => {
       try {
         // Send a request to the server to delete the account
         const response = await fetch(
-          "http://localhost:5000/api/dauth/deleteAccount",
+          `${host}/api/dauth/deleteAccount`,
           {
             method: "DELETE",
             headers: {

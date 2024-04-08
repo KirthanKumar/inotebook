@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 
 const ForgotPassword = (props) => {
-    const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("");
+  const host = "https://inotebook-fpt7.onrender.com";
 
   const receiveResetEmail = async (e) => {
     e.preventDefault();
     const response = await fetch(
-      "http://localhost:5000/api/fpauth/forgotpassword",
+      `${host}/api/fpauth/forgotpassword`,
       {
         method: "POST",
         headers: {
@@ -22,7 +23,7 @@ const ForgotPassword = (props) => {
     console.log(json);
 
     if (json.success) {
-        props.showAlert("Sent email for resetting password", "success");
+      props.showAlert("Sent email for resetting password", "success");
     } else {
       props.showAlert("Try again", "danger");
     }
