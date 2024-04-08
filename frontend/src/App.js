@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, HashRouter, HashRouter } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import About from "./components/About";
@@ -27,7 +27,7 @@ function App() {
   return (
     <>
       <NoteState>
-        <Router>
+        <HashRouter>
           <Navbar />
           <Alert alert={alert} />
           <div className="container">
@@ -68,7 +68,7 @@ function App() {
               />
             </Routes>
           </div>
-        </Router>
+        </HaRouter>
       </NoteState>
     </>
   );
