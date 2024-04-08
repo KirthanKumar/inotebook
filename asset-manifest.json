@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/inotebook/static/css/main.ecc6ddf6.css",
+    "main.js": "/inotebook/static/js/main.c83ce237.js",
+    "static/js/453.d724e79d.chunk.js": "/inotebook/static/js/453.d724e79d.chunk.js",
+    "static/media/avataaars.png": "/inotebook/static/media/avataaars.a91df79b4f38992a9b91.png",
+    "static/media/about.jpg": "/inotebook/static/media/about.d512a2bf8f0da474f848.jpg",
+    "static/media/about - awesome.jpeg": "/inotebook/static/media/about - awesome.aaf8d049e02657368291.jpeg",
+    "static/media/about - awesome.svg": "/inotebook/static/media/about - awesome.98d6002c91324ba69db86bfc0231ad1f.svg",
+    "static/media/inotebook.svg": "/inotebook/static/media/inotebook.88c26f781a4a08363bae413d09c51af1.svg",
+    "index.html": "/inotebook/index.html",
+    "main.ecc6ddf6.css.map": "/inotebook/static/css/main.ecc6ddf6.css.map",
+    "main.c83ce237.js.map": "/inotebook/static/js/main.c83ce237.js.map",
+    "453.d724e79d.chunk.js.map": "/inotebook/static/js/453.d724e79d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ecc6ddf6.css",
+    "static/js/main.c83ce237.js"
+  ]
+}
