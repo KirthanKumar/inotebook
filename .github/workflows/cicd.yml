@@ -1,0 +1,25 @@
+name: iNotebook deploy workflow # name for workflow
+
+on: # inside this will specify event on which our workflow will be triggered
+  push:
+    branches: {master}
+
+jobs: # work to perform
+  build:
+    runs-on: ubuntu-latest # this is a default thing provided by github
+    steps:
+      - uses: actions/checkout@v3 # checkout enables github actions and workflow to be able to get access to your codebase.
+      - uses: actions/setup-node@v3 # running tests, installing dependencies
+        with:
+          node-version: 20.9.0
+      - name: npm install
+        run: |
+          npm install
+        env: 
+          CI: true
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      -uses: actions/checkout@v3
+      -uses: 
