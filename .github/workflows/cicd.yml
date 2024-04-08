@@ -1,1 +1,61 @@
+name: CI/CD Workflow
 
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'frontend/**' # Trigger workflow when code is pushed to frontend folder
+      - 'backend/**'  # Trigger workflow when code is pushed to backend folder
+
+jobs:
+  deploy_frontend:
+    name: Deploy Frontend to GitHub Pages
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20.9.0'
+
+      - name: Install Dependencies and Build
+        run: |
+          cd frontend
+          npm install
+          npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./frontend/build
+
+  deploy_backend:
+    name: Deploy Backend to Render.com
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20.9.0'
+
+      - name: Deploy to Render.com
+        run: |
+          # Install Render CLI
+          curl -sL https://github.com/render/render-cli/releases/latest/download/render-linux-amd64 -o render
+          chmod +x render
+          sudo mv render /usr/local/bin/render
+
+          # Authenticate with Render (replace YOUR_RENDER_EMAIL and YOUR_RENDER_PASSWORD with your Render login credentials)
+          render login --email skirthankumar13579@gmail.com --password dystopia135680@?
+
+          # Deploy the backend to Render (replace YOUR_SERVICE_NAME with the name of your Render service and YOUR_GITHUB_REPO with your GitHub repository URL)
+          render deploy inotebook --config ./backend/render.yaml --branch main --github-repo https://github.com/KirthanKumar/inotebook/ --directory ./backend
